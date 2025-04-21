@@ -2,11 +2,6 @@ from supabase import create_client, Client
 import pandas as pd
 import string
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from nltk.stem import WordNetLemmatizer
-from nltk.tokenize import word_tokenize
-from IPython.display import Image
-from textblob import TextBlob
-from PIL import Image
 
 # Replace with your actual values
 SUPABASE_URL = "https://bvtirlkozgihvapfzovn.supabase.co"
