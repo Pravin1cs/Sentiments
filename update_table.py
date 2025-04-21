@@ -35,7 +35,7 @@ for index, row in df.iterrows():
         stt = "Positive Sentiment"
         scr = score['pos'] - score['neg']
     else:
-        stt = "Neutral Senti"
+        stt = "Neutral Sentient"
         scr = score['pos'] - score['neg']
     update_response = supabase.table("dup_customer_interactions_duplicate").update({
         "sentiment_score": scr, "sentiment": stt
