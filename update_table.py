@@ -41,5 +41,6 @@ for index, row in df.iterrows():
         "sentiment_score": scr, "sentiment": stt
     }).eq("id", row["id"]).execute()
 
+print("Table Updated Successfully")
 
 
