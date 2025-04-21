@@ -7,6 +7,9 @@ from fastapi import FastAPI
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 app = FastAPI()
+@app.get("/")
+def read_root():
+    return {"message": "Sentiment API is up and running!"}
 # Replace with your actual values
 SUPABASE_URL = "https://bvtirlkozgihvapfzovn.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2dGlybGtvemdpaHZhcGZ6b3ZuIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NDE5NDY5NCwiZXhwIjoyMDU5NzcwNjk0fQ.i2NCQCBiE6vzQ8rZbAHSxewjrfuOsYCE28J2xdtnwA8"
