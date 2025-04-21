@@ -3,6 +3,7 @@ nltk.download('vader_lexicon')
 from supabase import create_client, Client
 import pandas as pd
 import string
+from fastapi import FastAPI
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 app = FastAPI()
