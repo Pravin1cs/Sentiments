@@ -29,7 +29,7 @@ for index, row in df.iterrows():
     cleaned_text = lower_case.translate(str.maketrans('', '', string.punctuation))
     score = SentimentIntensityAnalyzer().polarity_scores(cleaned_text)
     if score['neg'] > score['pos']:
-        stt = "Negative Sentimen"
+        stt = "Negative Sentiment"
         scr =score['pos']-score['neg']
     elif score['neg'] < score['pos']:
         stt = "Positive Sentiment"
