@@ -28,7 +28,7 @@ for index, row in df.iterrows():
     lower_case = text.lower()
     lower_case = lower_case.replace('-', ' ')
     cleaned_text = lower_case.translate(str.maketrans('', '', string.punctuation))
-	summary = summarizer(text, max_length=200, min_length=25, do_sample=False)[0]['summary_text']
+    summary = summarizer(text, max_length=200, min_length=25, do_sample=False)[0]['summary_text']
     score = SentimentIntensityAnalyzer().polarity_scores(cleaned_text)
     if score['neg'] > score['pos']:
         stt = "Negative Sentiment"
