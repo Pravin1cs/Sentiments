@@ -39,8 +39,8 @@ for index, row in df.iterrows():
     else:
         stt = "Neutral Sentiment"
         scr = score['pos'] - score['neg']
-    update_response = supabase.table("customer_interactions").update({
-        "sentiment_score": scr, "sentiment": stt, "sentiment_analysis": summary
+    update_response = supabase.table("sentiment_analysis").update({
+        "sentiment_score": scr, "Sentiment": stt, "sentiment_summary": summary
     }).eq("id", row["id"]).execute()
 
 app = FastAPI()
