@@ -5,3 +5,4 @@ uvicorn
 fastapi
 transformers
 tensorflow
+tf-keras
