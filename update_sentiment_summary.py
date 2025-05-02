@@ -6,6 +6,7 @@ import pandas as pd
 import string
 from fastapi import FastAPI
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from fastapi.middleware.cors import CORSMiddleware
 
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 # Replace with your actual values
@@ -15,7 +16,7 @@ SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJ
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 
-response = supabase.table("sentiment_analysis").select("*").execute()
+response = supabase.table("sentiment_analysis").neq("analysis_ind", "TRUE").select("*").execute()
 
 #print("Data:", response.data)
 df = pd.DataFrame(response.data)
@@ -40,10 +41,17 @@ for index, row in df.iterrows():
         stt = "Neutral Sentiment"
         scr = score['pos'] - score['neg']
     update_response = supabase.table("sentiment_analysis").update({
-        "sentiment_score": scr, "Sentiment": stt, "sentiment_summary": summary
+        "sentiment_score": scr, "Sentiment": stt, "sentiment_summary": summary, "analysis_ind": "TRUE"
     }).eq("id", row["id"]).execute()
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 @app.get("/")
 def read_root():
     return {"message": "Sentiment API is up and running!"}
